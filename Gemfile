@@ -25,6 +25,7 @@ gem 'jbuilder', '~> 2.7'
 
 gem "bulma-rails", "~> 0.8.0"
 gem "simple_calendar", "~> 2.0"
+gem 'cloudinary'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

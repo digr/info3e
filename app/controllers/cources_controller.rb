@@ -24,6 +24,6 @@ class CourcesController < ApplicationController
   private
 
   def cource_params
-    params.require(:cource).permit(:title, :text)
+    params.require(:cource).permit(:title, :text, :document)
   end
 end
