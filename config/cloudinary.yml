@@ -1,0 +1,6 @@
+production:
+  cloud_name: <%= ENV["CL_NAME"] %>
+  api_key: <%= ENV["CL_KEY"] %>
+  api_secret: <%= ENV["CL_SEC"] %>
+  enhance_image_tag: true
+  static_file_support: true
