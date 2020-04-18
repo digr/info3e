@@ -1,0 +1,19 @@
+<h1 class="title">Listing Cources</h1>
+ 
+<table class="table">
+  <tr>
+    <th>Title</th>
+    <th>Text</th>
+    <th></th>
+  </tr>
+ 
+  <% @cources.each do |cource| %>
+    <tr>
+      <td><%= cource.title %></td>
+      <td><%= cource.text %></td>
+      <td><%= link_to 'Show', cource_path(cource) %></td>
+    </tr>
+  <% end %>
+</table>
+
+<a class="button" href="/cources/new">Добавить</a>

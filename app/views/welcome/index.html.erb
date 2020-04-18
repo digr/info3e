@@ -1,0 +1,13 @@
+<section class="section">
+    <div class="container">
+      <h1 class="title">
+        <%= Date.today %>
+      </h1>
+
+      <%= week_calendar do |date| %>
+        <%= date.day %>
+      <% end %>
+
+      <a href="/cources">Курсы</a>
+    </div>
+</section>
