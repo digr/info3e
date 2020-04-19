@@ -91,7 +91,7 @@
 
     </div>
 
-    <div class="column">
+    <div class="column" id="app">
         <div class="container">
 
             <nav class="panel is-size-7">
@@ -111,56 +111,52 @@
                     <tr>
                         <td>Математика</td>
                         <td>
-                            <select>
+                        <select v-model="selected_math">
                                 <option></option>
                                 <option>Отлично</option>
                                 <option>Нормально</option>
                                 <option>Плоховато</option>
                             </select>
+                            Отправлено: {{selected_math}}
                         </td>
                     </tr>
 
                     <tr>
                         <td>Русский язык</td>
                         <td>
-                            <select>
+                        <select v-model="selected_russian">
                                 <option></option>
                                 <option>Отлично</option>
                                 <option>Нормально</option>
                                 <option>Плоховато</option>
                             </select>
+                            Отправлено: {{selected_russian}}
                         </td>
                     </tr>
 
                     <tr>
                         <td>Литература</td>
                         <td>
-                            <select>
+                        <select v-model="selected_reading">
                                 <option></option>
                                 <option>Отлично</option>
                                 <option>Нормально</option>
                                 <option>Плоховато</option>
                             </select>
+                            Отправлено: {{selected_reading}}
                         </td>
                     </tr>
 
                     <tr>
                         <td>Окружающй мир</td>
                         <td>
-                            <select>
+                        <select v-model="selected_world">
                                 <option></option>
                                 <option>Отлично</option>
                                 <option>Нормально</option>
                                 <option>Плоховато</option>
                             </select>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td conspan="2">
-                            <div class="buttons are-small">
-                                <button class="button is-primary">Отправить</button>
-                            </div>
+                            Отправлено: {{selected_world}}
                         </td>
                     </tr>
 
@@ -251,3 +247,17 @@
     </div>
 </div>
 -->
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            selected_math: '',
+            selected_russian: '',
+            selected_reading: '',
+            selected_world: ''
+
+        }
+    });
+</script>
