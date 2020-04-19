@@ -1,12 +1,14 @@
 <div class="container pt4">
     <h class="title is-4"><%= task.cource.title %></h>
     <p class="pt2">
-        <%= task.text %>
+        <pre>
+            <%= task.text %>
+        </pre>        
     </p>
 
     <div class="container pt2">
         <% task.documents.each do |document| %>
-            <a class="tag" href="<%= url_for(document) %>"><%= document.filename %></a>
+            <a class="tag is-link" href="<%= url_for(document) %>"><%= document.filename %></a>
         <% end %>    
     </div>
 </div>
