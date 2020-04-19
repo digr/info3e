@@ -3,4 +3,10 @@
     <p class="pt2">
         <%= task.text %>
     </p>
+
+    <div class="container pt2">
+        <% task.documents.each do |document| %>
+            <a class="tag" href="<%= url_for(document) %>"><%= document.filename %></a>
+        <% end %>    
+    </div>
 </div>
