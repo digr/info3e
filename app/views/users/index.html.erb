@@ -1,0 +1,28 @@
+<div class="container has-text-centered">
+
+  <h1 class="title">Пользователи</h1>
+ 
+  <table class="table">
+    <tr>
+      <th>Login</th>
+      <th>Fullname</th>
+    </tr>
+   
+    <% @users.each do |u| %>
+      <tr>
+        <td><%= u.username %></td>
+        <td><%= u.fullname %></td>
+      </tr>
+    <% end %>
+  </table>
+
+  <div class="field is-grouped">
+    <p class="control">
+      <%= button_to "Добавить", '/users/new', method: :get, class: "button" %>      
+    </p>
+    <p class="control">
+      <%= button_to "Выйти", '/sessions/logout', method: :post, class: "button" %>
+    </p>
+  </div>
+
+</div>

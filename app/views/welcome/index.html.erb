@@ -1,13 +1,240 @@
-<section class="section">
-    <div class="container">
-      <h1 class="title">
-        <%= Date.today %>
-      </h1>
+<div class="container has-text-centered">
+    <h class="title is-4">Задания на <%= @today %><%= @date %></h> <a class="tag" href="/welcome/calendar">Выбрать другой день</a>
+</div>
 
-      <%= week_calendar do |date| %>
-        <%= date.day %>
-      <% end %>
 
-      <a href="/cources">Курсы</a>
+<!--
+<div class="columns">
+    <div class="column is-two-thirds">
+        <div class="container">
+            <h class="title is-4">Математика</h>
+        </div>
+        <article class="panel">
+            <p class="panel-heading">
+                Русский язык
+            </p>
+            <div class="panel-block">
+                <p class="control has-icons-left">
+                    <input class="input is-warning" type="text" placeholder="Search">
+                    <span class="icon is-left">
+      <i class="fas fa-search" aria-hidden="true"></i>
+    </span>
+                </p>
+            </div>
+        </article>
+        <article class="panel">
+            <p class="panel-heading">
+                Литература
+            </p>
+            <div class="panel-block">
+                <p class="control has-icons-left">
+                    <input class="input is-warning" type="text" placeholder="Search">
+                    <span class="icon is-left">
+      <i class="fas fa-search" aria-hidden="true"></i>
+    </span>
+                </p>
+            </div>
+        </article>
+        <article class="panel">
+            <p class="panel-heading">
+                Окружающий мир
+            </p>
+            <div class="panel-block">
+                <p class="control has-icons-left">
+                    <input class="input is-warning" type="text" placeholder="Search">
+                    <span class="icon is-left">
+      <i class="fas fa-search" aria-hidden="true"></i>
+    </span>
+                </p>
+            </div>
+        </article>
+
+        <article class="panel">
+            <p class="panel-heading">
+                ИЗО
+            </p>
+            <div class="panel-block">
+                <p class="control has-icons-left">
+                    <input class="input is-warning" type="text" placeholder="Search">
+                    <span class="icon is-left">
+      <i class="fas fa-search" aria-hidden="true"></i>
+    </span>
+                </p>
+            </div>
+        </article>
+        <article class="panel">
+            <p class="panel-heading">
+                Технология
+            </p>
+            <div class="panel-block">
+                <p class="control has-icons-left">
+                    <input class="input is-warning" type="text" placeholder="Search">
+                    <span class="icon is-left">
+                    <i class="fas fa-search" aria-hidden="true"></i>
+            </span>
+                </p>
+            </div>
+        </article>
+
     </div>
-</section>
+
+    <div class="column">
+        <div class="container">
+
+            <nav class="panel is-size-7">
+                <p class="panel-heading">
+                    Самооценка учащихся
+                </p>
+
+                Оцени свою работу сегодня:
+                <table class="table is-fullwidth is-narrow">
+                    <thead>
+                    <tr>
+                        <th><abbr title="Name">Предмет</abbr></th>
+                        <th><abbr title="Math">Самооценка</abbr></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Математика</td>
+                        <td>
+                            <select>
+                                <option></option>
+                                <option>Отлично</option>
+                                <option>Нормально</option>
+                                <option>Плоховато</option>
+                            </select>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Русский язык</td>
+                        <td>
+                            <select>
+                                <option></option>
+                                <option>Отлично</option>
+                                <option>Нормально</option>
+                                <option>Плоховато</option>
+                            </select>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Литература</td>
+                        <td>
+                            <select>
+                                <option></option>
+                                <option>Отлично</option>
+                                <option>Нормально</option>
+                                <option>Плоховато</option>
+                            </select>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Окружающй мир</td>
+                        <td>
+                            <select>
+                                <option></option>
+                                <option>Отлично</option>
+                                <option>Нормально</option>
+                                <option>Плоховато</option>
+                            </select>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td conspan="2">
+                            <div class="buttons are-small">
+                                <button class="button is-primary">Отправить</button>
+                            </div>
+                        </td>
+                    </tr>
+
+                </table>
+
+
+                <table class="table is-fullwidth is-narrow">
+                    <thead>
+                    <tr>
+                        <th><abbr title="Name">Ученик</abbr></th>
+                        <th><abbr title="Math">Мат</abbr></th>
+                        <th><abbr title="RussLang">Рус</abbr></th>
+                        <th><abbr title="World">Окр</abbr></th>
+                        <th><abbr title="Reading">Лит</abbr></th>
+                        <th><abbr title="Painting">ИЗО</abbr></th>
+                        <th><abbr title="Labor">Труд</abbr></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Грушин</td>
+                        <td bgcolor="white">
+                            <ion-icon name="partly-sunny-outline" size="large"></ion-icon>
+                        </td>
+                        <td bgcolor="grey">
+                            <ion-icon name="rainy-outline" size="large"></ion-icon>
+                        </td>
+                        <td bgcolor="yellow">
+                            <ion-icon name="sunny-outline" size="large"></ion-icon>
+                        </td>
+                        <td bgcolor="white">
+                            <ion-icon name="partly-sunny-outline" size="large"></ion-icon>
+                        </td>
+                        <td bgcolor="grey">
+                            <ion-icon name="rainy-outline" size="large"></ion-icon>
+                        </td>
+                        <td bgcolor="yellow">
+                            <ion-icon name="sunny-outline" size="large"></ion-icon>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Иванов</td>
+                        <td bgcolor="white">
+                            <ion-icon name="partly-sunny-outline" size="large"></ion-icon>
+                        </td>
+                        <td bgcolor="grey">
+                            <ion-icon name="rainy-outline" size="large"></ion-icon>
+                        </td>
+                        <td bgcolor="yellow">
+                            <ion-icon name="sunny-outline" size="large"></ion-icon>
+                        </td>
+                        <td bgcolor="white">
+                            <ion-icon name="partly-sunny-outline" size="large"></ion-icon>
+                        </td>
+                        <td bgcolor="grey">
+                            <ion-icon name="rainy-outline" size="large"></ion-icon>
+                        </td>
+                        <td bgcolor="yellow">
+                            <ion-icon name="sunny-outline" size="large"></ion-icon>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Иванов</td>
+                        <td bgcolor="white">
+                            <ion-icon name="partly-sunny-outline" size="large"></ion-icon>
+                        </td>
+                        <td bgcolor="grey">
+                            <ion-icon name="rainy-outline" size="large"></ion-icon>
+                        </td>
+                        <td bgcolor="yellow">
+                            <ion-icon name="sunny-outline" size="large"></ion-icon>
+                        </td>
+                        <td bgcolor="white">
+                            <ion-icon name="partly-sunny-outline" size="large"></ion-icon>
+                        </td>
+                        <td bgcolor="grey">
+                            <ion-icon name="rainy-outline" size="large"></ion-icon>
+                        </td>
+                        <td bgcolor="yellow">
+                            <ion-icon name="sunny-outline" size="large"></ion-icon>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </nav>
+        </div>
+    </div>
+</div>
+-->

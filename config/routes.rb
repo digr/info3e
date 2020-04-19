@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
-  get 'welcome/index'
+  get 'sessions/new'
+  post 'sessions/create'
+  post 'sessions/logout'
 
+  get 'welcome/index'
+  get 'welcome/calendar'
+
+  resources :users, only: [:new, :create, :index]
   resources :cources
 
   root 'welcome#index'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -1,0 +1,33 @@
+<div class="container">
+  <h1 class="title">Новый пользователь</h1>
+
+    <%= form_tag 'create' do %>
+        <div class="field">
+            <label class="label">Логин</label>
+            <div class="control">                                
+                <%= text_field_tag :username, nil, class: "input" %>
+            </div>
+        </div>                
+        <div class="field">
+            <label class="label">Полное имя</label>
+            <div class="control">                                
+                <%= text_field_tag :fullname, nil, class: "input" %>
+            </div>
+        </div>                
+        <div class="field">
+            <label class="label">Пароль</label>
+            <div class="control">
+                <%= password_field_tag :password, nil, class: "input" %>
+            </div>
+        </div>
+
+        <div class="field is-grouped">
+          <div class="control">
+            <%= submit_tag "Добавить", :class => "button" %>
+          </div>
+          <div class="control">
+            <%= button_to "Отмена", '/users', method: :get, class: "button" %>
+          </div>
+        </div>
+    <% end %>
+</div>

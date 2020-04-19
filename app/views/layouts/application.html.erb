@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Blog</title>
+    <title>ГБОУ УК-2 3Е</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -11,6 +11,62 @@
   </head>
 
   <body>
+    <div class="container has-text-centered ">
+      <h1 class="title">
+        Сайт дополнительного образования <strong>3Е</strong> класса
+      </h1>    
+    </div>
+
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div id="navbar3E" class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item">
+                    Проектные работы
+                </a>
+
+                <a class="navbar-item">
+                    Шкатулка развлечений
+                </a>
+
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                        В помощь учащимся
+                    </a>
+
+                    <div class="navbar-dropdown">
+                        <a class="navbar-item">
+                            Будьте здоровы
+                        </a>
+                        <a class="navbar-item">
+                            Физкульт. минутки
+                        </a>
+                        <a class="navbar-item">
+                            Математика
+                        </a>
+                        <a class="navbar-item">
+                            Русский язык
+                        </a>
+                        <a class="navbar-item">
+                            Литература
+                        </a>
+                        <a class="navbar-item">
+                            Окр. мир
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <strong><%= current_username %></strong>
+                </div>            
+                <div class="navbar-item">
+                    <%= button_to "Выйти", '/sessions/logout', method: :post, class: "button is-small" %>
+                </div>
+            </div>
+        </div>
+    </nav>
+
     <%= yield %>
   </body>
 </html>
