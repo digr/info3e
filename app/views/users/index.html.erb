@@ -4,14 +4,18 @@
  
   <table class="table">
     <tr>
-      <th>Login</th>
-      <th>Fullname</th>
+      <th>Логин</th>
+      <th>Полное имя</th>
+      <th>Учитель?</th>
     </tr>
    
     <% @users.each do |u| %>
       <tr>
         <td><%= u.username %></td>
         <td><%= u.fullname %></td>
+        <td>
+          <% if u.teacher? %>Да<% end %>
+        </td>
       </tr>
     <% end %>
   </table>
@@ -19,9 +23,6 @@
   <div class="field is-grouped">
     <p class="control">
       <%= button_to "Добавить", '/users/new', method: :get, class: "button" %>      
-    </p>
-    <p class="control">
-      <%= button_to "Выйти", '/sessions/logout', method: :post, class: "button" %>
     </p>
   </div>
 

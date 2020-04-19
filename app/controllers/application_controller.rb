@@ -1,26 +1,42 @@
 class ApplicationController < ActionController::Base
   before_action :authorized
 
+  helper_method :logged_in?
+  helper_method :admin?
+  helper_method :teacher?
   helper_method :current_username
-
-  def current_user
-    User.find_by(id: session[:user_id])
-  end
+  helper_method :current_user_info
 
   def current_username
     if admin?
-      "Administrator"
+      "Администратор"
+    elsif teacher?
+      "Учитель #{current_user_info.fullname}"
+    elsif user?    
+      "Ученик #{current_user_info.fullname}"
     else
-      current_user.fullname || current_user.username
+      nil
     end
-  end
-
-  def logged_in?
-    !current_user.nil?
   end
 
   def admin?
     !session[:admin].nil?
+  end
+
+  def user?
+    !current_user_info.nil?
+  end  
+
+  def current_user_info
+    User.find_by(id: session[:user_id])
+  end
+
+  def logged_in?
+    user? || admin?
+  end
+
+  def teacher?
+    user? && current_user_info.teacher?
   end
 
   def authorized
@@ -31,7 +47,17 @@ class ApplicationController < ActionController::Base
     not_found unless admin?
   end
 
+  def authorized_teacher
+    not_found unless teacher?
+  end
+
   def not_found
     raise ActionController::RoutingError.new('Not Found')
+  end
+
+  def setup_date(date_param_name)
+    @date = Date.parse(params[date_param_name]) rescue Date.today
+    @date_i18 = I18n.l(@date, format: "%A, %-d %b %Y", locale: :'ru')
+    @today_str = "Сегодня, " if @date == Date.today
   end
 end

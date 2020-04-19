@@ -1,10 +1,18 @@
 class WelcomeController < ApplicationController
   def index
-    tasks_date = DateTime.parse(params[:start_date]) rescue DateTime.now
-    @date = I18n.l(tasks_date, format: "%A, %-d %b %Y", locale: :'ru')
-    @today = "Сегодня, " if DateTime.now.day == tasks_date.day
+    setup_date(:start_date)
+
+    if admin?
+        render :admin
+    end    
+
+    # @tasks = Task.where(date: @date.midnight..@date.end_of_day)
+    @tasks = Task.where(date: @date)
   end
 
   def calendar        
+  end
+
+  def admin
   end
 end

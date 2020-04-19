@@ -15,6 +15,8 @@ class UsersController < ApplicationController
                                                      :password,
                                                      :fullname))
 
+    @user.teacher = (params[:user][:role] == "2")
+
     if @user.save
       redirect_to :users
     else

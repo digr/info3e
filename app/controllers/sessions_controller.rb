@@ -1,7 +1,12 @@
 class SessionsController < ApplicationController
+  layout "login"
+
   skip_before_action :authorized, only: [:new, :create]
 
   def new
+    if logged_in?
+      redirect_to "/"
+    end
   end
 
   def create
@@ -19,7 +24,8 @@ class SessionsController < ApplicationController
           params[:password] == admin_pass
 
       session[:admin] = true
-      redirect_to "/users"
+
+      redirect_to "/"
     else
       render :new
     end

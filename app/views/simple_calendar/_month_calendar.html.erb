@@ -25,7 +25,7 @@
     <% date_range.each_slice(7) do |week| %>
       <tr>
         <% week.each do |day| %>
-          <%= content_tag :td, class: calendar.td_classes_for(day) do %>
+          <%= content_tag :td, class: "" do %>
             <a href="/?start_date=<%=day%>"><%= day.day %></a>
           <% end %>
         <% end %>
@@ -35,5 +35,5 @@
 </table>
 
 <div class="container has-text-centered">
-  <%= link_to 'Сегодня', "/?start_date=#{DateTime.now}", class: "button" %>
+  <%= link_to 'Сегодня', "/?start_date=#{Date.today}", class: "button" %>
 </div>

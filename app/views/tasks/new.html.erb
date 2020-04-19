@@ -1,0 +1,49 @@
+<div class="container">
+  <h1 class="title">Новое задание на <%= @today_str %><%= @date_i18 %></h1>
+
+    <%= form_with model: @task, local: true do |form| %>
+        <% if @task.errors.any? %>
+            <% @task.errors.full_messages.each do |msg| %>
+              <p class="help is-danger"><%= msg %></p>
+            <% end %>
+        <% end %>
+
+        <%= form.hidden_field :date, value: @date %>
+
+        <div class="field">
+            <label class="label">Предмет</label>
+            <div class="control">                                
+                <div class="select">
+                    <%= form.collection_select(:cource_id, Cource.all, :id, :title) %>
+                </div>     
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label">Описание</label>
+            <div class="control">
+                <%= form.text_area :text, class: "textarea", rows: "20" %>
+            </div>
+        </div>
+
+        <div class="file is-boxed field">
+          <label class="file-label">
+            <%= form.file_field :documents, multiple: true, direct_upload: false, class: "file-input" %>
+            <span class="file-cta">
+              <span class="file-label">
+                Добавить файлы
+              </span>
+            </span>
+          </label>
+        </div>
+
+        <div class="field is-grouped">
+          <div class="control">
+            <%= form.submit "Добавить", :class => "button" %>
+          </div>
+          <div class="control">
+            <a class="button" href="/?start_date=<%= @date %>">Отмена</a>
+          </div>
+        </div>
+    <% end %>
+</div>

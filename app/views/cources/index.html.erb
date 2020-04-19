@@ -1,19 +1,22 @@
-<h1 class="title">Listing Cources</h1>
- 
-<table class="table">
-  <tr>
-    <th>Title</th>
-    <th>Text</th>
-    <th></th>
-  </tr>
- 
-  <% @cources.each do |cource| %>
+<div class="container has-text-centered">
+  <h1 class="title">Предметы</h1>
+  
+  <table class="table">
     <tr>
-      <td><%= cource.title %></td>
-      <td><%= cource.text %></td>
-      <td><%= link_to 'Show', cource_path(cource) %></td>
+      <th>Название</th>
+      <th></th>
     </tr>
-  <% end %>
-</table>
+   
+    <% @cources.each do |cource| %>
+      <tr>
+        <td><%= cource.title %></td>
+      </tr>
+    <% end %>
+  </table>
 
-<a class="button" href="/cources/new">Добавить</a>
+  <div class="field is-grouped">
+    <p class="control">
+      <%= button_to "Добавить", '/cources/new', method: :get, class: "button" %>      
+    </p>
+  </div>
+</div>

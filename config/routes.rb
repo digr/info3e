@@ -5,9 +5,11 @@ Rails.application.routes.draw do
 
   get 'welcome/index'
   get 'welcome/calendar'
+  get 'welcome/admin'
 
   resources :users, only: [:new, :create, :index]
-  resources :cources
+  resources :cources, only: [:new, :create, :index]
+  resources :tasks, only: [:new, :create, :index]
 
   root 'welcome#index'
 end

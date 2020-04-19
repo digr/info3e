@@ -1,32 +1,45 @@
 <div class="container">
   <h1 class="title">Новый пользователь</h1>
 
-    <%= form_tag 'create' do %>
+    <%= form_with model: @user, local: true do |form| %>
+      <% if @user.errors.any? %>
+        <% @user.errors.full_messages.each do |msg| %>
+          <p class="help is-danger"><%= msg %></p>
+        <% end %>
+      <% end %>            
+    
         <div class="field">
             <label class="label">Логин</label>
             <div class="control">                                
-                <%= text_field_tag :username, nil, class: "input" %>
+                <%= form.text_field :username, class: "input" %>
             </div>
         </div>                
         <div class="field">
             <label class="label">Полное имя</label>
             <div class="control">                                
-                <%= text_field_tag :fullname, nil, class: "input" %>
+                <%= form.text_field :fullname, class: "input" %>
             </div>
-        </div>                
+        </div>
+        <div class="field">
+            <label class="label">Роль</label>
+            <div class="control">                                
+                <div class="select">
+                    <%= form.select(:role, options_for_select([['Ученик', 1], ['Учитель', 2]])) %>
+                </div>     
+            </div>
+        </div>
         <div class="field">
             <label class="label">Пароль</label>
             <div class="control">
-                <%= password_field_tag :password, nil, class: "input" %>
+                <%= form.text_field :password, class: "input" %>
             </div>
         </div>
-
         <div class="field is-grouped">
           <div class="control">
-            <%= submit_tag "Добавить", :class => "button" %>
+            <%= form.submit "Добавить", :class => "button" %>
           </div>
           <div class="control">
-            <%= button_to "Отмена", '/users', method: :get, class: "button" %>
+            <a class="button" href="/users">Отмена</a>
           </div>
         </div>
     <% end %>
