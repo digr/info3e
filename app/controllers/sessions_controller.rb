@@ -7,6 +7,7 @@ class SessionsController < ApplicationController
     if logged_in?
       redirect_to "/"
     end
+    @auth_failed = false
   end
 
   def create
@@ -18,15 +19,16 @@ class SessionsController < ApplicationController
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
       redirect_to '/'
-    elsif admin_name && 
-          params[:username] == admin_name && 
-          admin_pass && 
+    elsif admin_name &&
+          params[:username] == admin_name &&
+          admin_pass &&
           params[:password] == admin_pass
 
       session[:admin] = true
 
       redirect_to "/"
     else
+      @auth_failed = true
       render :new
     end
   end

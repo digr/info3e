@@ -1,14 +1,17 @@
 <section class="hero is-fullheight sans-serif">
     <div class="hero-body">
         <div class="container has-text-centered">
+            <% if @auth_failed %>
+                <span class="is-size-5 has-text-danger">Неверное имя пользователя или пароль</span>
+            <% end %>
             <div class="column is-4 is-offset-4">
                 <div class="box">
                     <%= form_tag 'create' do %>
                         <div class="field">
-                            <div class="control">                                
+                            <div class="control">
                                 <%= text_field_tag :username, nil, class: "input is-large", placeholder: 'Имя' %>
                             </div>
-                        </div>                
+                        </div>
                         <div class="field">
                             <div class="control">
                                 <%= password_field_tag :password, nil, class: "input is-large", placeholder: 'Пароль' %>
