@@ -11,6 +11,8 @@ class SessionsController < ApplicationController
   end
 
   def create
+    params.require([:username, :password]).each { _1.strip! }
+
     admin_name = Rails.env.production? ? ENV["ADMIN_NAME"] : "admin"
     admin_pass = Rails.env.production? ? ENV["ADMIN_PASS"] : "admin"
 
@@ -31,6 +33,9 @@ class SessionsController < ApplicationController
       @auth_failed = true
       render :new
     end
+  rescue ActionController::ParameterMissing
+      @auth_failed = true
+      render :new    
   end
 
   def logout
@@ -38,4 +43,5 @@ class SessionsController < ApplicationController
     session[:admin] = nil
     redirect_to '/'
   end
+
 end
