@@ -26,9 +26,20 @@
             </div>
         </div>
 
+        <div class="file is-boxed field">
+          <label class="file-label">
+            <%= form.file_field :documents, multiple: true, direct_upload: false, class: "file-input" %>
+            <span class="file-cta">
+              <span class="file-label">
+                Добавить файлы
+              </span>
+            </span>
+          </label>
+        </div>
+
         <div class="field is-grouped">
           <div class="control">
-            <%= form.submit "Добавить", :class => "button" %>
+            <%= form.submit "Сохранить", :class => "button" %>
           </div>
           <div class="control">
             <a class="button" href="/?start_date=<%= @date %>">Отмена</a>
