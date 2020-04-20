@@ -7,6 +7,16 @@ class ApplicationController < ActionController::Base
   helper_method :current_username
   helper_method :current_user_info
 
+  around_action :set_time_zone
+
+  def set_time_zone
+    if logged_in?
+      Time.use_zone("Europe/Moscow") { yield }
+    else
+      yield
+    end
+  end
+
   def current_username
     if admin?
       "Администратор"
@@ -40,7 +50,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authorized
-    redirect_to '/sessions/new' unless logged_in?
+    redirect_to "/sessions/new" unless logged_in?
   end  
 
   def authorized_admin
@@ -52,7 +62,7 @@ class ApplicationController < ActionController::Base
   end
 
   def not_found
-    raise ActionController::RoutingError.new('Not Found')
+    raise ActionController::RoutingError.new("Not Found")
   end
 
   def setup_date(date_param_name)
