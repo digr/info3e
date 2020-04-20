@@ -11,7 +11,7 @@ class TasksController < ApplicationController
     @task = Task.new
   end
 
-  def create 
+  def create
     @task = Task.new(task_params)
 
     if @task.save
@@ -24,6 +24,6 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:cource_id, :text, :date, documents: [])
+    params.require(:task).permit(:cource_id, :text, :date, :content, documents: [])
   end
 end

@@ -1,6 +1,7 @@
 class Task < ApplicationRecord
     belongs_to :cource
     has_many_attached :documents
+    has_rich_text :content
 
-    validates :text, presence: true, length: { minimum: 3 }
+    validates :content, presence: true
 end

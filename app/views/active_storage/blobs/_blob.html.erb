@@ -1,0 +1,4 @@
+<a class="tag is-link" href="<%= url_for(blob) %>">
+    <span><%= blob.try(:caption) || blob.filename %></span>
+    <span><%= number_to_human_size blob.byte_size %></span>
+</a>
