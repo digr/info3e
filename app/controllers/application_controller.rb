@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
       "Администратор"
     elsif teacher?
       "Учитель #{current_user_info.fullname}"
-    elsif user?    
+    elsif user?
       "Ученик #{current_user_info.fullname}"
     else
       nil
@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
 
   def user?
     !current_user_info.nil?
-  end  
+  end
 
   def current_user_info
     User.find_by(id: session[:user_id])
@@ -51,7 +51,7 @@ class ApplicationController < ActionController::Base
 
   def authorized
     redirect_to "/sessions/new" unless logged_in?
-  end  
+  end
 
   def authorized_admin
     not_found unless admin?
@@ -68,6 +68,15 @@ class ApplicationController < ActionController::Base
   def setup_date(date_param_name)
     @date = Date.parse(params[date_param_name]) rescue Date.today
     @date_i18 = I18n.l(@date, format: "%A, %-d %b %Y", locale: :'ru')
-    @today_str = "Сегодня, " if @date == Date.today
+    @today_str = case @date
+      when Date.today
+        "сегодня, "
+      when Date.tomorrow
+        "завтра, "
+      when Date.yesterday
+        "вчера, "
+      else
+        ""
+      end
   end
 end
