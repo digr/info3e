@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   before_action :authorized_teacher
 
   def index
-    @tasks = Task.all
+    @tasks = Task.all.order(date: :desc)
   end
 
   def new
@@ -20,8 +20,10 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    Task.find_by(id: params[:task_id]).destroy
-    redirect_to "tasks"
+    @task = Task.find(params[:id])
+    @task.destroy if @task
+
+    redirect_to tasks_path
   end
 
   private

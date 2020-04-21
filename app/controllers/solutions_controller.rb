@@ -8,7 +8,7 @@ class SolutionsController < ApplicationController
 
     session[:cource_id] = cource.id
 
-    @solutions = Solution.where(date: date, cource: cource).order(created_at: :asc)
+    @solutions = Solution.where(date: date, cource: cource).order(created_at: :desc)
   end
 
   def new
