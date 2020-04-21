@@ -6,8 +6,6 @@ class TasksController < ApplicationController
   end
 
   def new
-    setup_date(:date)
-
     @task = Task.new
   end
 
@@ -15,10 +13,15 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
 
     if @task.save
-      redirect_to "/?start_date=#{@task.date}"
+      redirect_to "/"
     else
-      redirect_to "/tasks/new?date=#{@task.date}"
+      redirect_to "new_task"
     end
+  end
+
+  def destroy
+    Task.find_by(id: params[:task_id]).destroy
+    redirect_to "tasks"
   end
 
   private

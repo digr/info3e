@@ -1,0 +1,41 @@
+<div class="container has-text-centered">
+  <h1 class="title is-3">
+    <%= render partial: "date" %>
+  </h1>
+  <h1 class="title is-2">
+    <%= cource.title %>
+  </h1>
+</div>
+
+<div class="container has-text-centered pa3">
+  <%= form_with model: @solution, local: true do |form| %>
+      <%= form.hidden_field :cource_id, value: cource.id %>
+      <%= form.hidden_field :user_id, value: current_user_info.id %>
+      <%= form.hidden_field :date, value: date %>
+
+      <div id="file-selector" class="file is-boxed field is-fullwidth">
+        <label class="file-label">
+          <%= form.file_field :documents, multiple: true, direct_upload: false, class: "file-input", required: true %>
+          <span class="file-cta">
+            <span class="file-label">
+              Добавить файлы
+            </span>
+          </span>
+          <span class="file-name">
+            Файл не выбран
+          </span>
+        </label>
+      </div>
+
+      <div class="field is-grouped">
+        <div class="control">
+          <%= form.submit "Сохранить", :class => "button is-primary" %>
+        </div>
+        <div class="control">
+          <%= link_to "Отмена", :solutions, class: "button" %>
+        </div>
+      </div>
+  <% end %>
+</div>
+
+<%= render partial: "show_selected_form_files" %>

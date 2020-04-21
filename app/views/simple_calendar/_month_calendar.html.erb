@@ -1,4 +1,4 @@
-<div class="columns has-text-centered">
+<div class="columns has-text-centered pt5">
   <div class="column">
     <%= link_to 'Раньше', calendar.url_for_previous_view, class: "button" %>
   </div>
@@ -25,12 +25,12 @@
     <% date_range.each_slice(7) do |week| %>
       <tr>
         <% week.each do |day| %>
-          <td> 
-            <% if day == Date.today %>            
+          <td>
+            <% if day == Date.today %>
               <a href="/?start_date=<%=day%>" class="ba bw2 pa1"><%= day.day %></a>
             <% else %>
               <a href="/?start_date=<%=day%>" ><%= day.day %></a>
-            <% end %>           
+            <% end %>
           </td>
         <% end %>
       </tr>

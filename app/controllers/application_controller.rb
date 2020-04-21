@@ -2,10 +2,18 @@ class ApplicationController < ActionController::Base
   before_action :authorized
 
   helper_method :logged_in?
+
   helper_method :admin?
   helper_method :teacher?
-  helper_method :current_username
+  helper_method :student?
+
   helper_method :current_user_info
+  helper_method :username
+  helper_method :user_fullname
+
+  helper_method :date
+  helper_method :date_i18
+  helper_method :today_str
 
   around_action :set_time_zone
 
@@ -17,7 +25,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def current_username
+  def user_fullname
     if admin?
       "Администратор"
     elsif teacher?
@@ -41,12 +49,20 @@ class ApplicationController < ActionController::Base
     User.find_by(id: session[:user_id])
   end
 
+  def username
+    current_user_info.username
+  end
+
   def logged_in?
     user? || admin?
   end
 
   def teacher?
     user? && current_user_info.teacher?
+  end
+
+  def student?
+    ! teacher?
   end
 
   def authorized
@@ -65,10 +81,16 @@ class ApplicationController < ActionController::Base
     raise ActionController::RoutingError.new("Not Found")
   end
 
-  def setup_date(date_param_name)
-    @date = Date.parse(params[date_param_name]) rescue Date.today
-    @date_i18 = I18n.l(@date, format: "%A, %-d %b %Y", locale: :'ru')
-    @today_str = case @date
+  def date(d = nil)
+    Date.parse(d || session[:start_date])
+  end
+
+  def date_i18(d = nil)
+    I18n.l(date(d), format: "%A, %-d %b %Y", locale: :'ru')
+  end
+
+  def today_str
+    case date
       when Date.today
         "сегодня, "
       when Date.tomorrow
@@ -77,6 +99,10 @@ class ApplicationController < ActionController::Base
         "вчера, "
       else
         ""
-      end
+    end
+  end
+
+  def reset_date
+    session[:start_date] = nil
   end
 end

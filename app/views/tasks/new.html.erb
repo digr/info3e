@@ -1,5 +1,5 @@
 <div class="container">
-  <h1 class="title">Новое задание на <%= @today_str %><%= @date_i18 %></h1>
+  <h1 class="title">Новое задание на <%= render partial: "date" %></h1>
 
     <%= form_with model: @task, local: true do |form| %>
         <% if @task.errors.any? %>
@@ -8,13 +8,13 @@
             <% end %>
         <% end %>
 
-        <%= form.hidden_field :date, value: @date %>
+        <%= form.hidden_field :date, value: date %>
 
         <div class="field">
             <label class="label">Предмет</label>
             <div class="control">
                 <div class="select">
-                    <%= form.collection_select(:cource_id, Cource.all, :id, :title) %>
+                    <%= form.collection_select(:cource_id, Cource.all, :id, :title, {include_blank: "Выберите предмет"}, required: true) %>
                 </div>
             </div>
         </div>
@@ -22,28 +22,33 @@
         <div class="field">
             <label class="label">Описание</label>
             <div class="control">
-                <%= form.rich_text_area :content, direct_upload: false %>
+                <%= form.rich_text_area :content, direct_upload: false, required: true %>
             </div>
         </div>
 
-        <div class="file is-boxed field">
-          <label class="file-label">
-            <%= form.file_field :documents, multiple: true, direct_upload: false, class: "file-input" %>
-            <span class="file-cta">
-              <span class="file-label">
-                Добавить файлы
-              </span>
+      <div id="file-selector" class="file is-boxed field is-fullwidth">
+        <label class="file-label">
+          <%= form.file_field :documents, multiple: true, direct_upload: false, class: "file-input" %>
+          <span class="file-cta">
+            <span class="file-label">
+              Добавить файлы
             </span>
-          </label>
-        </div>
+          </span>
+          <span class="file-name">
+            Файл не выбран
+          </span>
+        </label>
+      </div>
 
-        <div class="field is-grouped">
-          <div class="control">
-            <%= form.submit "Сохранить", :class => "button" %>
-          </div>
-          <div class="control">
-            <a class="button" href="/?start_date=<%= @date %>">Отмена</a>
-          </div>
+      <div class="field is-grouped">
+        <div class="control">
+          <%= form.submit "Сохранить", :class => "button" %>
         </div>
+        <div class="control">
+          <%= link_to "Отмена", "/", class: "button" %>
+        </div>
+      </div>
     <% end %>
 </div>
+
+<%= render partial: "show_selected_form_files" %>

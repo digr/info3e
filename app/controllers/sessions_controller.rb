@@ -20,6 +20,7 @@ class SessionsController < ApplicationController
 
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
+      reset_date
       redirect_to '/'
     elsif admin_name &&
           params[:username] == admin_name &&
@@ -27,7 +28,6 @@ class SessionsController < ApplicationController
           params[:password] == admin_pass
 
       session[:admin] = true
-
       redirect_to "/"
     else
       @auth_failed = true
@@ -35,7 +35,7 @@ class SessionsController < ApplicationController
     end
   rescue ActionController::ParameterMissing
       @auth_failed = true
-      render :new    
+      render :new
   end
 
   def logout

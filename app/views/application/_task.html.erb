@@ -1,5 +1,22 @@
-<div class="container pt4">
+<div class="container pa3">
     <h class="title is-4"><%= task.cource.title %></h>
+    <% if defined? show_all %>
+        <h class="subtitle"><%= date_i18(task.date) %></h>
+    <% end %>
+
+    <% if student?
+            label = 'Посмотреть и сдать задания'
+        else
+            label = 'Посмотреть решения'
+        end
+    %>
+
+    <%= link_to label, { controller: "solutions", cource_id: task.cource.id }, class: "tag" %>
+
+    <% if teacher? && defined? show_all %>
+        <%= link_to "Удалить", "tasks#destroy", class: "tag is-danger", remote: false, data: {confirm: 'Уверены?'}, task_id: task.id %>
+    <% end %>
+
     <p class="pt2">
         <% unless task.text.nil? %>
             <pre>
@@ -11,8 +28,6 @@
     </p>
 
     <div class="container pt2">
-        <% task.documents.each do |document| %>
-            <a class="tag is-link" href="<%= url_for(document) %>"><%= document.filename %></a>
-        <% end %>
+        <%= render partial: "document", collection: task.documents %>
     </div>
 </div>

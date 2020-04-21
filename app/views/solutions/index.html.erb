@@ -1,0 +1,23 @@
+<div class="container has-text-centered">
+  <h1 class="title is-5">
+    <%= render partial: "date" %>
+  </h1>
+  <h1 class="title is-2">
+    <%= cource.title %>. Решения
+  </h1>
+  <div>
+    <% if student? %>
+      <%= link_to 'Загрузить свое решение', { controller: "solutions", action: "new" }, class: "button is-primary" %>
+    <% end %>
+      <%= link_to 'Назад', { controller: "welcome" }, class: "button" %>
+  </div>
+</div>
+
+<div class="container pt3">
+    <%= render partial: "solution", collection: @solutions %>
+    <% if @solutions.empty? %>
+        <div class="container has-text-centered pt5">
+            <h class="title is-5">Еще нет решений!</h>
+        </div>
+    <% end %>
+</div>

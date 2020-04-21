@@ -1,8 +1,6 @@
-    <div class="field is-grouped">
-      <div class="control">
-        <a class="button is-large" href="/users">Пользователи</a>
-      </div>
-      <div class="control">
-        <a class="button is-large" href="/cources">Предметы</a>
-      </div>
-    </div>
+<div class="container has-text-centered pt5">
+  <div>
+      <%= link_to 'Пользователи', { controller: "users" }, class: "button is-large" %>
+      <%= link_to 'Предметы', { controller: "cources" }, class: "button is-large" %>
+  </div>
+</div>
