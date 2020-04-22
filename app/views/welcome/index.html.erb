@@ -2,16 +2,175 @@
     <h class="title is-4">Задания на <%= render partial: "date" %></h>
     <%= link_to 'Выбрать другой день', :welcome_calendar, class: "tag" %>
     <% if teacher? %>
-        <%= link_to 'Добавить задание', :new_task, class: "tag is-link" %>
-        <%= link_to 'Все задания', :tasks, class: "tag is-secondary" %>
+    <%= link_to 'Добавить задание', :new_task, class: "tag is-link" %>
+    <%= link_to 'Все задания', :tasks, class: "tag is-secondary" %>
     <% end %>
 </div>
 
-<div class="container pt3">
-    <%= render partial: "task", collection: @tasks %>
-    <% if @tasks.empty? %>
-        <div class="container has-text-centered pt5">
-            <h class="title is-5">Нет заданий!</h>
+
+<div class="columns pt3">
+    <div class="column is-three-quarters">
+
+
+        <div class="container pt3">
+            <%= render partial: "task", collection: @tasks %>
+            <% if @tasks.empty? %>
+            <div class="container has-text-centered pt5">
+                <h class="title is-5">Нет заданий!</h>
+            </div>
+            <% end %>
         </div>
-    <% end %>
+
+    </div>
+
+
+    <div class="column is-one-quarter" id="app">
+        <div class="container">
+
+            <nav class="panel is-size-7">
+                <p class="panel-heading">
+                    Самооценка учащихся
+                <div id="app">
+                    {{ info }}
+                </div>
+                </p>
+
+                Оцени свою работу сегодня:
+                <table class="table is-fullwidth is-narrow">
+                    <thead>
+                    <tr>
+                        <th><abbr title="Name">Предмет</abbr></th>
+                        <th><abbr title="Math">Самооценка</abbr></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Математика</td>
+                        <td>
+                            <select v-model="selected_math">
+                                <option></option>
+                                <option>Отлично</option>
+                                <option>Нормально</option>
+                                <option>Плоховато</option>
+                            </select>
+                            Отправлено: {{selected_math}}
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Русский язык</td>
+                        <td>
+                            <select v-model="selected_russian">
+                                <option></option>
+                                <option>Отлично</option>
+                                <option>Нормально</option>
+                                <option>Плоховато</option>
+                            </select>
+                            Отправлено: {{selected_russian}}
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Литература</td>
+                        <td>
+                            <select v-model="selected_reading">
+                                <option></option>
+                                <option>Отлично</option>
+                                <option>Нормально</option>
+                                <option>Плоховато</option>
+                            </select>
+                            Отправлено: {{selected_reading}}
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Окружающй мир</td>
+                        <td>
+                            <select v-model="selected_world">
+                                <option></option>
+                                <option>Отлично</option>
+                                <option>Нормально</option>
+                                <option>Плоховато</option>
+                            </select>
+                            Отправлено: {{selected_world}}
+                        </td>
+                    </tr>
+
+                </table>
+
+
+                <table class="table is-fullwidth is-narrow">
+                    <thead>
+                    <tr>
+                        <th><abbr title="Name">Ученик</abbr></th>
+                        <th><abbr title="Math">Мат</abbr></th>
+                        <th><abbr title="RussLang">Рус</abbr></th>
+                        <th><abbr title="Reading">Лит</abbr></th>
+                        <th><abbr title="World">Окр</abbr></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Иванов</td>
+                        <td bgcolor="white">
+                            <ion-icon name="partly-sunny-outline" size="small"></ion-icon>
+                        </td>
+                        <td bgcolor="grey">
+                            <ion-icon name="rainy-outline" size="small"></ion-icon>
+                        </td>
+                        <td bgcolor="yellow">
+                            <ion-icon name="sunny-outline" size="small"></ion-icon>
+                        </td>
+                        <td bgcolor="white">
+                            <ion-icon name="partly-sunny-outline" size="small"></ion-icon>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Сидоров</td>
+                        <td bgcolor="white">
+                            <ion-icon name="partly-sunny-outline" size="small"></ion-icon>
+                        </td>
+                        <td bgcolor="grey">
+                            <ion-icon name="rainy-outline" size="small"></ion-icon>
+                        </td>
+                        <td bgcolor="yellow">
+                            <ion-icon name="sunny-outline" size="small"></ion-icon>
+                        </td>
+                        <td bgcolor="white">
+                            <ion-icon name="partly-sunny-outline" size="small"></ion-icon>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </nav>
+        </div>
+    </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<script>
+    new Vue({
+      el: '#app',
+      data() {
+        return {
+            selected_math: '',
+            selected_russian: '',
+            selected_reading: '',
+            selected_world: '',
+            info: null
+        };
+      },
+      mounted() {
+          axios.post('/', {
+                user: 'grushin',
+                lesson: 'math',
+                mark: 'great'
+                }).then(function (response) {
+                console.log(response);})
+      }
+    });
+</script>
