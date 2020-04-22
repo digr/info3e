@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
 
   def new
     if logged_in?
-      redirect_to "/"
+      redirect_to :root
     end
     @auth_failed = false
   end
@@ -21,14 +21,14 @@ class SessionsController < ApplicationController
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
       reset_date
-      redirect_to '/'
+      redirect_to :root
     elsif admin_name &&
           params[:username] == admin_name &&
           admin_pass &&
           params[:password] == admin_pass
 
       session[:admin] = true
-      redirect_to "/"
+      redirect_to :root
     else
       @auth_failed = true
       render :new
@@ -41,7 +41,7 @@ class SessionsController < ApplicationController
   def logout
     session[:user_id] = nil
     session[:admin] = nil
-    redirect_to '/'
+    redirect_to :root
   end
 
 end

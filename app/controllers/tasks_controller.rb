@@ -13,9 +13,9 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
 
     if @task.save
-      redirect_to "/"
+      redirect_to :root
     else
-      redirect_to "new_task"
+      redirect_to :new_task
     end
   end
 

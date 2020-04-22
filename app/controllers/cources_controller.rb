@@ -17,7 +17,7 @@ class CourcesController < ApplicationController
     if @cource.save
       redirect_to :cources
     else
-      render 'new'
+      render :new
     end
   end
 

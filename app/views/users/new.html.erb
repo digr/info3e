@@ -6,26 +6,26 @@
         <% @user.errors.full_messages.each do |msg| %>
           <p class="help is-danger"><%= msg %></p>
         <% end %>
-      <% end %>            
-    
+      <% end %>
+
         <div class="field">
             <label class="label">Логин</label>
-            <div class="control">                                
+            <div class="control">
                 <%= form.text_field :username, class: "input" %>
             </div>
-        </div>                
+        </div>
         <div class="field">
             <label class="label">Полное имя</label>
-            <div class="control">                                
+            <div class="control">
                 <%= form.text_field :fullname, class: "input" %>
             </div>
         </div>
         <div class="field">
             <label class="label">Роль</label>
-            <div class="control">                                
+            <div class="control">
                 <div class="select">
                     <%= form.select(:role, options_for_select([['Ученик', 1], ['Учитель', 2]])) %>
-                </div>     
+                </div>
             </div>
         </div>
         <div class="field">
@@ -39,7 +39,7 @@
             <%= form.submit "Добавить", :class => "button" %>
           </div>
           <div class="control">
-            <a class="button" href="/users">Отмена</a>
+            <%= link_to "Отмена", :users, class: "button" %>
           </div>
         </div>
     <% end %>

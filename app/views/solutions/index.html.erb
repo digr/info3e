@@ -14,7 +14,16 @@
 </div>
 
 <div class="container pt3">
-    <%= render partial: "solution", collection: @solutions %>
+    <% @solutions.group_by(&:user).each do |user, solutions| %>
+        <div class="container pa3">
+            <h class="title is-4"><%= user.fullname %></h>
+
+            <div class="container pt2">
+                <%= render partial: "solution", collection: solutions %>
+            </div>
+        </div>
+    <% end %>
+
     <% if @solutions.empty? %>
         <div class="container has-text-centered pt5">
             <h class="title is-5">Еще нет решений!</h>
