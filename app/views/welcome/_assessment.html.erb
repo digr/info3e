@@ -1,0 +1,60 @@
+<% if student? %>
+    <%= form_with(url: "/assessments/create", local: true)  do |form| %>
+        <nav class="panel is-size-7 has-text-centered">
+            <p class="panel-heading">
+                Оцени свою работу сегодня
+            </p>
+
+            <table class="table is-fullwidth is-narrow">
+                <thead>
+                    <tr>
+                        <th>Предмет</th>
+                        <th>Самооценка</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% Cource.assessmnt.each do |cource| %>
+                    <tr>
+                        <td><%= cource.title %></td>
+                        <td class="field">
+                            <div class="control">
+                                <div class="select is-small is-fullwidth">
+                                    <select name="assessments[<%= cource.id %>]">
+                                        <option value=""></option>
+                                        <option value="1">Отлично</option>
+                                        <option value="2">Нормально</option>
+                                        <option value="3">Плоховато</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <% end %>
+                </tbody>
+            </table>
+            <div class="container pb3">
+                <%= form.submit "Отправить", :class => "button" %>
+            </div>
+        </nav>
+    <% end %>
+<% end %>
+
+<nav class="panel is-size-7 has-text-centered">
+    <p class="panel-heading">
+        Самооценка учащихся
+    </p>
+
+    <table class="table is-fullwidth is-narrow">
+        <thead>
+            <tr>
+                <th>Ученик</th>
+                <% Cource.assessmnt.each do |cource| %>
+                <th><%= cource.title[0..2] %></th>
+                <% end %>
+            </tr>
+        </thead>
+        <tbody>
+            <%= render partial: "assessment_user", collection: User.where(teacher: false).order(fullname: :asc) %>
+        </tbody>
+    </table>
+</nav>

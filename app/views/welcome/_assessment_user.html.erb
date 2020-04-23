@@ -1,0 +1,14 @@
+<tr>
+    <td><%= assessment_user.fullname %></td>
+
+    <% Cource.assessmnt.each do |cource| %>
+        <td bgcolor="white">
+            <% SelfAssessment.find_by(user_id: assessment_user.id, date: date, cource_id: cource.id).tap do |assmnt| %>
+                <% if assmnt.nil? %>
+                <% else %>
+                    <ion-icon style="color: <%= assmnt.color %>" name="<%= assmnt.icon %>" size="small"></ion-icon>
+                <% end %>
+            <% end %>
+        </td>
+    <% end %>
+</tr>

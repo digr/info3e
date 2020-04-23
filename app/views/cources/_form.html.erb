@@ -1,0 +1,26 @@
+<%= form_with model: @cource do |form| %>
+    <div class="field">
+        <label class="label">Название</label>
+        <div class="control">
+            <%= form.text_field :title, class: "input", required: true %>
+        </div>
+    </div>
+
+    <div class="field">
+        <div class="control">
+            <label class="checkbox">
+                <%= form.check_box :assessmnt %>
+                Включить в список для самооценки
+            </label>
+        </div>
+    </div>
+
+    <div class="field is-grouped">
+        <div class="control">
+        <%= form.submit submit_label, :class => "button" %>
+        </div>
+        <div class="control">
+        <%= link_to "Отмена", :cources, class: "button" %>
+        </div>
+    </div>
+<% end %>

@@ -1,20 +1,4 @@
 <div class="container">
   <h1 class="title">Новый предмет</h1>
-
-    <%= form_with model: @cource do |form| %>
-        <div class="field">
-            <label class="label">Название</label>
-            <div class="control">
-                <%= form.text_field :title, class: "input", required: true %>
-            </div>
-        </div>
-        <div class="field is-grouped">
-          <div class="control">
-            <%= form.submit "Добавить", :class => "button" %>
-          </div>
-          <div class="control">
-            <%= link_to "Отмена", :cources, class: "button" %>
-          </div>
-        </div>
-    <% end %>
+  <%= render 'form', { submit_label: "Добавить" } %>
 </div>
