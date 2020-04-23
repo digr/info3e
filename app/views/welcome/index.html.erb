@@ -20,7 +20,9 @@
     </div>
 
     <div class="column is-one-quarter">
-        <%= render partial: "assessment" %>
+        <% if Cource.where(assessmnt: true).any? %>
+            <%= render partial: "assessment" %>
+        <% end %>
     </div>
 </div>
 
